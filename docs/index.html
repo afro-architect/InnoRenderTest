@@ -147,18 +147,7 @@
 
         </div>
         <div class="inno-render-index-column">
-           <!-- JavaScript to handle image preview -->
-    <script>
-        function previewImage(event) {
-            var reader = new FileReader();
-            reader.onload = function() {
-                var preview = document.getElementById('preview');
-                preview.src = reader.result;
-                preview.style.display = 'block';
-            }
-            reader.readAsDataURL(event.target.files[0]);
-        }
-    </script>
+        
             <!-- Column 2 content here -->
             <h2>Column 2</h2>
             <input type="text" class="input-box" placeholder="AI Image Prompts">
@@ -196,5 +185,17 @@
       
         </div>
     </div>
+       <!-- JavaScript to handle image preview -->
+    <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var preview = document.getElementById('preview');
+                preview.src = reader.result;
+                preview.style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
   </body
 ></html>
