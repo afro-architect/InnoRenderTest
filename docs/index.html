@@ -121,6 +121,67 @@
       href="https://unpkg.com/@teleporthq/teleport-custom-scripts/dist/style.css" /></head
   ><body>
     <script src="docs/InnoRender_Index/src/views/inno-render-index.js"></script>
-    <div id="app">Hello World</div>
+     <!-- Your content here -->
+    <div class="inno-render-index-container">
+        <div class="inno-render-index-column">
+            <!-- Column 1 content here -->
+            <h2>Column 1</h2>
+             <div class="upload-button">
+                <label for="file-upload">Click to Upload Image</label>
+                <input type="file" id="file-upload" accept="image/*" onchange="previewImage(event)">
+            </div>
+            <img id="preview" class="uploaded-image" src="#" alt="Preview Image" style="display: none;">
+        </div>
+        </div>
+        <div class="inno-render-index-column">
+           <!-- JavaScript to handle image preview -->
+    <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var preview = document.getElementById('preview');
+                preview.src = reader.result;
+                preview.style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+            <!-- Column 2 content here -->
+            <h2>Column 2</h2>
+            <input type="text" class="input-box" placeholder="AI Image Prompts">
+            <select class="dropdown" name="season">
+                <option value="">Select Season</option>
+                <option value="spring">Spring</option>
+                <option value="summer">Summer</option>
+                <option value="autumn">Autumn</option>
+                <option value="winter">Winter</option>
+            </select>
+            <select class="dropdown" name="weather">
+                <option value="">Select Weather</option>
+                <option value="sunny">Sunny</option>
+                <option value="cloudy">Cloudy</option>
+                <option value="rainy">Rainy</option>
+                <option value="snowy">Snowy</option>
+            </select>
+            <select class="dropdown" name="time-of-day">
+                <option value="">Select Time of Day</option>
+                <option value="morning">Morning</option>
+                <option value="afternoon">Afternoon</option>
+                <option value="evening">Evening</option>
+                <option value="night">Night</option>
+            </select>
+            <select class="dropdown" name="style">
+                <option value="">Select Style</option>
+                <option value="comfyui-lora">ComfyUI LORA</option>
+                <!-- Add more options as needed -->
+            </select>
+                </div>
+        <div class="inno-render-index-column">
+            <!-- Column 3 content here -->
+            <h2>Column 3</h2>
+             <img class="comfyui-rendering" src="path/to/comfyui-rendering.jpg" alt="ComfyUI Rendering">
+      
+        </div>
+    </div>
   </body
 ></html>
