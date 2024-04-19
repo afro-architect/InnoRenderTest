@@ -103,15 +103,33 @@
 
     <!-- JavaScript to handle image preview -->
     <script>
-        function previewImage(event) {
-            var reader = new FileReader();
-            reader.onload = function() {
-                var preview = document.getElementById('preview');
-                preview.src = reader.result;
-                preview.style.display = 'block';
+    async function previewImage(event) {
+        const file = event.target.files[0];
+        const formData = new FormData();
+        formData.append('image', file);
+
+        try {
+            // Send the image to the ComfyUI API endpoint for processing
+            const response = await fetch('comfyui-api-endpoint', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to process image');
             }
-            reader.readAsDataURL(event.target.files[0]);
+
+            const result = await response.json();
+
+            // Display the processed image
+            const preview = document.getElementById('preview');
+            preview.src = result.processedImageUrl;
+            preview.style.display = 'block';
+        } catch (error) {
+            console.error(error);
+            alert('Error processing image');
         }
-    </script>
+    }
+</script>
 </body>
 </html>
