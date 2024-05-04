@@ -170,20 +170,33 @@ font-size: 16px;
 
     <!-- JavaScript to handle image preview -->
    <script>
- function previewImage(event) {
-        console.log("File selected"); // Check if the file selection event is triggered
-        var file = event.target.files[0];
-        var reader = new FileReader();
+// Function to handle file input change event
+        function previewImage(event) {
+            // Get the file selected by the user
+            var file = event.target.files[0];
 
-        reader.onload = function(event) {
-            console.log("Image loaded successfully"); // Check if the image is loaded successfully
-            var uploadedImage = document.getElementById('uploadedImage');
-            uploadedImage.src = event.target.result;
-            uploadedImage.style.display = 'block'; // Ensure the image is displayed
-        };
+            // Create a FileReader object to read the file
+            var reader = new FileReader();
 
-        reader.readAsDataURL(file);
-    }
+            // Function to handle FileReader onload event
+            reader.onload = function(event) {
+                // Get the image preview element
+                var imagePreview = document.getElementById('imagePreview');
+
+                // Set the source of the image preview to the loaded image data
+                imagePreview.src = event.target.result;
+
+                // Display the image preview
+                imagePreview.style.display = 'block';
+            };
+
+            // Read the file as a data URL
+            reader.readAsDataURL(file);
+        }
+
+        // Add event listener to file input to trigger previewImage function when a file is selected
+        document.getElementById('fileInput').addEventListener('change', previewImage);
+   
    
         <!-- Change column 3 image -->
              <!-- Original image -->
