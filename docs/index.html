@@ -162,7 +162,8 @@ font-size: 16px;
         <div class="inno-render-index-column">
             <!-- Column 3 content here -->
             <h2>Column 3</h2>
-            <img class="comfyui-rendering" src="https://github.com/afro-architect/InnoRenderTest/blob/main/docs/InnoRender_Index/img/img.png?raw=true" alt="ComfyUI Rendering">
+            <img id="convertedImage" src="https://github.com/afro-architect/InnoRenderTest/blob/main/docs/InnoRender_Index/img/img.png?raw=true" alt="Converted Image" style="max-width: 100%; ">
+           
                     </div>
         
     </div>
@@ -204,18 +205,23 @@ font-size: 16px;
    
         <!-- Change column 3 image -->
              <!-- Original image -->
-    <img id="comfyui-rendering" src=https://github.com/afro-architect/InnoRenderTest/blob/main/docs/InnoRender_Index/img/img.png?raw=true" alt="ComfyUI Rendering" width="100%">
-    
-    <!-- Button to trigger image change -->
-    <button onclick="changeImage()">Change Image</button>
+     // Function to preview the uploaded image
+        function previewImage(event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                var uploadedImage = document.getElementById('uploadedImage');
+                uploadedImage.src = event.target.result;
+                uploadedImage.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
 
-    <script>
-        function changeImage() {
-            // Get the image element
-            var image = document.getElementById('image');
-
-            // Change the src attribute to the new image
-            image.src = 'https://github.com/afro-architect/InnoRenderTest/blob/main/docs/InnoRender_Index/img/240402210407-image.png?raw=true';
+        // Function to convert the uploaded image
+        function convertImage() {
+            var uploadedImage = document.getElementById('uploadedImage');
+            var convertedImage = document.getElementById('convertedImage');
+            convertedImage.src = uploadedImage.src;
         }
 </script>
 </body>
