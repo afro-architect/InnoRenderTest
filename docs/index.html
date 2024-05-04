@@ -156,7 +156,7 @@
             <center><p> Convert your 2D linework and 3D models into stylized renders! </p></center>
 
     <!-- JavaScript to handle image preview -->
-    <script>
+   <script>
 function previewImage(event) {
     const file = event.target.files[0];
 
@@ -169,14 +169,14 @@ function previewImage(event) {
             // Set the source of the preview image to the loaded image data
             const preview = document.getElementById('preview');
             preview.src = event.target.result;
+            preview.style.maxWidth = '100%'; // Set maximum width to 100% of column width
+            preview.style.height = 'auto'; // Maintain aspect ratio
             preview.style.display = 'block'; // Display the preview image
         };
 
         // Read the image file as a data URL
         reader.readAsDataURL(file);
     }
-}
-</script>
 </script>
 </body>
 </html>
