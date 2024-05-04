@@ -81,6 +81,16 @@
   left: 50%;
   transform: translate(-50%, -50%);
   }
+        button {
+background-color: #04AA6D; /* Green */
+border: none;
+color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+}
         /* Position and center the image to scale nicely on all screens */
   background-position: center bottom; /* Adjusted position */
   background-repeat: no-repeat;
@@ -141,6 +151,12 @@
                 <option value="comfyui-lora">ComfyUI LORA</option>
                 <!-- Add more options as needed -->
             </select>
+            <div>
+    <br>
+            <br>
+            <br>
+        <p></p> <p></p> <p></p>
+            <center><button><p> Convert your 2D linework and 3D models into stylized renders! </p></button></center></div>
         </div>
         <div class="inno-render-index-column">
             <!-- Column 3 content here -->
@@ -148,12 +164,7 @@
             <img class="comfyui-rendering" src="https://github.com/afro-architect/InnoRenderTest/blob/main/docs/InnoRender_Index/img/img.png?raw=true" alt="ComfyUI Rendering">
                     </div>
         
-    </div><div>
-    <br>
-            <br>
-            <br>
-        <p></p> <p></p> <p></p>
-            <center><p> Convert your 2D linework and 3D models into stylized renders! </p></center></div>
+    </div>
 
     <!-- JavaScript to handle image preview -->
    <script>
@@ -189,6 +200,17 @@ function previewImage(event) {
         console.log("No file selected"); // Log when no file is selected
     }
 }
+        <!-- Button to trigger image change -->
+    <button onclick="changeImage()">Change Image</button>
+
+    <script>
+        function changeImage() {
+            // Get the image element
+            var image = document.getElementById('image');
+
+            // Change the src attribute to the new image
+            image.src = 'new_image.jpg';
+        }
 </script>
 </body>
 </html>
