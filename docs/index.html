@@ -195,11 +195,16 @@ document.getElementById('file-upload').addEventListener('change', previewImage);
 
        <!-- Change column 3 image -->
 // Function to convert the uploaded image
-function convertImage() {
-    var uploadedImage = document.getElementById('preview');
-    var convertedImage = document.getElementById('convertedImage');
-    convertedImage.src = uploadedImage.src;
-}
+    function convertImage() {
+        // Get the uploaded image element
+        var uploadedImage = document.getElementById('preview');
+        
+        // Get the converted image element
+        var convertedImage = document.getElementById('convertedImage');
+        
+        // Set the source of the converted image to the source of the uploaded image
+        convertedImage.src = uploadedImage.src;
+    }
    
    
        
