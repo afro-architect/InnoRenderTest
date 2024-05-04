@@ -119,8 +119,11 @@ font-size: 16px;
                 <h3>Need Help Getting Started?</h3><br>
                 <label for="file-upload"> Upload Image</label>
                 <input type="file" id="file-upload" accept="image/*" onchange="previewImage(event)">
+
             </div><br>
             <img id="preview" class="uploaded-image" src="docs/InnoRender_Index/img" alt="Preview Image" style="display: none;">
+            
+
         </div>
         <div class="inno-render-index-column-grey">
             <!-- Column 2 content here -->
@@ -162,7 +165,8 @@ font-size: 16px;
         <div class="inno-render-index-column">
             <!-- Column 3 content here -->
             <h2>Column 3</h2>
-            <img id="convertedImage" src="https://github.com/afro-architect/InnoRenderTest/blob/main/docs/InnoRender_Index/img/img.png?raw=true" alt="Converted Image" style="max-width: 300%; ">
+           <img id="convertedImage" src="https://github.com/afro-architect/InnoRenderTest/blob/main/docs/InnoRender_Index/img/img.png?raw=true" alt="Converted Image" style="max-width: 300%;">
+
            
                     </div>
         
@@ -170,54 +174,31 @@ font-size: 16px;
 
     <!-- JavaScript to handle image preview -->
    <script>
-// Function to handle file input change event
-        function previewImage(event) {
-            // Get the file selected by the user
-            var file = event.target.files[0];
+// Function to handle file input change event and preview the image
+function previewImage(event) {
+    var file = event.target.files[0];
+    var reader = new FileReader();
+    reader.onload = function(event) {
+        var uploadedImage = document.getElementById('preview');
+        uploadedImage.src = event.target.result;
+        uploadedImage.style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+}
 
-            // Create a FileReader object to read the file
-            var reader = new FileReader();
+// Add event listener to file input to trigger previewImage function when a file is selected
+document.getElementById('file-upload').addEventListener('change', previewImage);
 
-            // Function to handle FileReader onload event
-            reader.onload = function(event) {
-                // Get the image preview element
-                var imagePreview = document.getElementById('imagePreview');
-
-                // Set the source of the image preview to the loaded image data
-                imagePreview.src = event.target.result;
-
-                // Display the image preview
-                imagePreview.style.display = 'block';
-            };
-
-            // Read the file as a data URL
-            reader.readAsDataURL(file);
-        }
-
-        // Add event listener to file input to trigger previewImage function when a file is selected
-        document.getElementById('fileInput').addEventListener('change', previewImage);
+       <!-- Change column 3 image -->
+// Function to convert the uploaded image
+function convertImage() {
+    var uploadedImage = document.getElementById('preview');
+    var convertedImage = document.getElementById('convertedImage');
+    convertedImage.src = uploadedImage.src;
+}
    
    
-        <!-- Change column 3 image -->
-             <!-- Original image -->
-     // Function to preview the uploaded image
-        function previewImage(event) {
-            var file = event.target.files[0];
-            var reader = new FileReader();
-            reader.onload = function(event) {
-                var uploadedImage = document.getElementById('uploadedImage');
-                uploadedImage.src = event.target.result;
-                uploadedImage.style.display = 'block';
-            };
-            reader.readAsDataURL(file);
-        }
-
-        // Function to convert the uploaded image
-        function convertImage() {
-            var uploadedImage = document.getElementById('uploadedImage');
-            var convertedImage = document.getElementById('convertedImage');
-            convertedImage.src = uploadedImage.src;
-        }
+       
 </script>
 </body>
 </html>
