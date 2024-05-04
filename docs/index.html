@@ -169,38 +169,33 @@ font-size: 16px;
 
     <!-- JavaScript to handle image preview -->
    <script>
-function previewImage(event) {
-    console.log("Event triggered"); // Log event trigger
-    
-    const file = event.target.files[0];
+ // Function to handle file input change event
+        function previewImage(event) {
+            // Get the file selected by the user
+            var file = event.target.files[0];
 
-    // Check if a file was selected
-    if (file) {
-        console.log("File selected:", file.name); // Log file name
-        
-        const reader = new FileReader();
+            // Create a FileReader object to read the file
+            var reader = new FileReader();
 
-        // Set up the reader to load the image file
-        reader.onload = function(event) {
-            // Set the source of the preview image to the loaded image data
-            const preview = document.getElementById('preview');
-            preview.src = event.target.result;
-            preview.style.maxWidth = '100%'; // Set maximum width to 100% of column width
-            preview.style.height = 'auto'; // Maintain aspect ratio
-            preview.style.display = 'block'; // Display the preview image
-            console.log("Image loaded successfully"); // Log successful image load
-        };
+            // Function to handle FileReader onload event
+            reader.onload = function(event) {
+                // Get the image preview element
+                var imagePreview = document.getElementById('imagePreview');
 
-        // Read the image file as a data URL
-        reader.onerror = function(event) {
-            console.error("Error reading file:", event.target.error); // Log file reading error
-        };
+                // Set the source of the image preview to the loaded image data
+                imagePreview.src = event.target.result;
 
-        reader.readAsDataURL(file);
-    } else {
-        console.log("No file selected"); // Log when no file is selected
-    }
-}
+                // Display the image preview
+                imagePreview.style.display = 'block';
+            };
+
+            // Read the file as a data URL
+            reader.readAsDataURL(file);
+        }
+
+        // Add event listener to file input to trigger previewImage function when a file is selected
+        document.getElementById('fileInput').addEventListener('change', previewImage);
+   
         <!-- Change column 3 image -->
              <!-- Original image -->
     <img id="comfyui-rendering" src=https://github.com/afro-architect/InnoRenderTest/blob/main/docs/InnoRender_Index/img/img.png?raw=true" alt="ComfyUI Rendering" width="100%">
