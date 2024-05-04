@@ -158,10 +158,14 @@
     <!-- JavaScript to handle image preview -->
    <script>
 function previewImage(event) {
+    console.log("Event triggered"); // Log event trigger
+    
     const file = event.target.files[0];
 
     // Check if a file was selected
     if (file) {
+        console.log("File selected:", file.name); // Log file name
+        
         const reader = new FileReader();
 
         // Set up the reader to load the image file
@@ -172,11 +176,19 @@ function previewImage(event) {
             preview.style.maxWidth = '100%'; // Set maximum width to 100% of column width
             preview.style.height = 'auto'; // Maintain aspect ratio
             preview.style.display = 'block'; // Display the preview image
+            console.log("Image loaded successfully"); // Log successful image load
         };
 
         // Read the image file as a data URL
+        reader.onerror = function(event) {
+            console.error("Error reading file:", event.target.error); // Log file reading error
+        };
+
         reader.readAsDataURL(file);
+    } else {
+        console.log("No file selected"); // Log when no file is selected
     }
+}
 </script>
 </body>
 </html>
